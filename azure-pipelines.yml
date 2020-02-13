@@ -16,6 +16,7 @@ steps:
 - task: Bash@3
   inputs:
     targetType: 'inline'
+    failOnStderr: true
     script: |
       sudo apt-get update
       
@@ -37,8 +38,15 @@ steps:
       
       sudo apt-get install docker-ce docker-ce-cli containerd.io
       sudo service docker start
-      sudo docker ps
-      sudo docker pull nginx
+
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    failOnStderr: true
+    script: |
+      # Write your commands here
+      
+      sudo docker build -t myacr.azurecr.io/buildtools/dotnetcore-agent:0.0.1 docker/agent
 
 - script: dotnet build --framework netcoreapp3.1 --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
