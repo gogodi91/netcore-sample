@@ -44,9 +44,7 @@ steps:
     targetType: 'inline'
     failOnStderr: true
     script: |
-      # Write your commands here
-      
       sudo docker build -t myacr.azurecr.io/buildtools/dotnetcore-agent:0.0.1 docker/agent
 
-- script: dotnet build --framework netcoreapp3.1 --configuration $(buildConfiguration)
-  displayName: 'dotnet build $(buildConfiguration)'
+# - script: dotnet build --framework netcoreapp3.1 --configuration $(buildConfiguration)
+#   displayName: 'dotnet build $(buildConfiguration)'
